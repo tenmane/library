@@ -1,26 +1,151 @@
+:root {
+  --primary-color: rgb(185, 158, 117);
+  --secondary-color: rgb(43, 33, 12);
+}
+
 body {
+  font-family: "Merriweather", sans-serif;
   margin: 0;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: rgb(43, 33, 12);
+  background-color: var(--secondary-color);
 }
 
 header {
   display: flex;
-  justify-content: center;
+  border-bottom: black;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  border-bottom: 5px solid var(--primary-color);
   font-size: 2rem;
-  padding-bottom: 2rem;
-  color: orange;
+  background-color: rgb(0, 0, 0);
+  color: var(--primary-color);
 }
 
 #library-container {
-  padding: 2rem;
+  padding: 5rem 15rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 1.3rem;
+  gap: 1.2rem;
 }
 
 .book-container {
-  background-color: rgb(99, 62, 62);
+  background-color: var(--primary-color);
   padding: 1rem 2rem;
+  border-radius: 10px;
+}
+
+.add-button {
+  background-color: var(--secondary-color);
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+}
+
+
+#book-adder {
+  border: none;
+  background-color: rgb(58, 54, 48);
+  font-family: "Merriweather", sans-serif;
+  border-radius: 10px;
+  padding: 1.5rem;
+  color: rgb(248, 244, 222);
+}
+
+.book-details {
+  display: grid;
+  justify-content: center;
+  gap: 2em;
+}
+
+.input-fields {
+  border: none;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.input-fields div {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 7.5rem 1fr;
+  align-items: center;
+}
+
+.input-fields input[type="text"],
+input[type="number"] {
+  display: flex;
+  padding: 0.5rem 1rem;
+  background-color: rgb(94, 89, 77);
+  border: none;
+  border-radius: 4px;
+  color: rgb(248, 244, 222);
+  font-size: inherit;
+}
+
+.input-fields input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border: 2px solid white;
+}
+
+.input-fields input[type="text"]:user-invalid,
+input[type="number"]:user-invalid {
+  border: 2px solid red;
+}
+
+.input-fields input[type="text"]:user-valid,
+input[type="number"]:user-valid {
+  border: 2px solid green;
+}
+
+.submit-book-form {
+  background-color: var(--primary-color);
+  border: none;
+  font-size: 1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 15px;
+  justify-self: center;
+  cursor: pointer;
+  color: rgb(248, 244, 222);
+  font-weight: 600;
+}
+
+.read-status {
+  appearance: none;
+  border: none;
+}
+
+.read-status legend {
+  margin-bottom: 0.5rem;
+}
+
+.status-container {
+  display: flex;
+  gap: 1rem;
+  align-content: center;
+}
+
+.status-container label {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
+
+.status-container label,
+input[type="radio"] {
+  cursor: pointer;
+  margin: 0;
+  margin-right: 5px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:active {
+  opacity: 0.6;
 }
