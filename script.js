@@ -2,7 +2,7 @@ const myLibrary = [];
 
 const addButton = document.querySelector(".add-button");
 const bookFormModal = document.querySelector("#book-adder");
-const submitFormButton = document.querySelector(".submit-book-form");
+const bookForm = document.querySelector(".book-details");
 const libraryContainer = document.querySelector("#library-container");
 const readButton = document.querySelector("#read");
 
@@ -10,7 +10,7 @@ addButton.addEventListener("click", function () {
   bookFormModal.showModal();
 })
 
-submitFormButton.addEventListener("click", function (e) {
+bookForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const title = document.querySelector("#title");
   const author = document.querySelector("#author");
@@ -38,6 +38,13 @@ function addBookToLibrary(name, author, pages, status) {
 
 function displayBooks(books) {
   libraryContainer.textContent = "";
+  if (books.length === 0) {
+    const emptyIndicator = document.createElement("p");
+    emptyIndicator.classList.add("empty-indicator");
+    emptyIndicator.textContent = "Your Library is Empty";
+    libraryContainer.append(emptyIndicator);
+    return;
+  }
   for (const book of books) {
 
     const bookContainer = document.createElement("div");
@@ -47,7 +54,10 @@ function displayBooks(books) {
     const bookAuthor = document.createElement("h3");
     const bookPages = document.createElement("p");
     const readButton = document.createElement("button");
+    const deleteButton = document.createElement("button");
+
     readButton.classList.add("book-status");
+    deleteButton.classList.add("delete-book");
 
     bookName.textContent = book.name;
     bookAuthor.textContent = book.author;
@@ -72,7 +82,13 @@ function displayBooks(books) {
       }
     })
 
-    bookContainer.append(bookName, bookAuthor, bookPages, readButton);
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click",function(e){
+      
+    })
+    bookContainer.append(bookName, bookAuthor, bookPages, readButton, deleteButton);
     libraryContainer.append(bookContainer);
   }
 }
+
+displayBooks(myLibrary);
