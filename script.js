@@ -1,9 +1,25 @@
 const myLibrary = [];
-const addButton = document.querySelector(".add-button");
 
-Variables = {
-  libraryContainer: document.querySelector("#library-container"),
-}
+const addButton = document.querySelector(".add-button");
+const bookFormModal = document.querySelector("#book-adder");
+const submitFormButton = document.querySelector(".submit-book-form");
+const libraryContainer = document.querySelector("#library-container");
+
+addButton.addEventListener("click", function () {
+  bookFormModal.showModal();
+})
+
+submitFormButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  const title = document.querySelector("#title");
+  const author = document.querySelector("#author");
+  const pages = document.querySelector("#pages");
+  addBookToLibrary(title.value, author.value, pages.value);
+  displayBooks(myLibrary);
+  bookFormModal.close();
+  bookFormModal.querySelector("form").reset();
+})
+
 function Book(name, author, pages) {
   this.name = name;
   this.author = author;
@@ -17,21 +33,21 @@ function addBookToLibrary(name, author, pages) {
 }
 
 function displayBooks(books) {
-  for (book of books) {
+  libraryContainer.textContent = "";
+  for (const book of books) {
 
-    let bookContainer = document.createElement("div");
-    let bookName = document.createElement("h2");
-    let bookAuthor = document.createElement("h3");
-    let bookPages = document.createElement("p");
+    const bookContainer = document.createElement("div");
+    bookContainer.classList.add("book-container");
+
+    const bookName = document.createElement("h2");
+    const bookAuthor = document.createElement("h3");
+    const bookPages = document.createElement("p");
 
     bookName.textContent = book.name;
     bookAuthor.textContent = book.author;
     bookPages.textContent = book.pages;
 
-    bookContainer.append(bookName);
-    bookContainer.append(bookAuthor);
-    bookContainer.append(bookPages);
-    Variables.libraryContainer.append(bookContainer);
+    bookContainer.append(bookName, bookAuthor, bookPages);
+    libraryContainer.append(bookContainer);
   }
 }
-displayBooks(myLibrary);
