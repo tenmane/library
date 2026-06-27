@@ -181,6 +181,20 @@ input[type="radio"] {
   content: "\2715";
 }
 
+
+/*DELETE BUTTON*/
+.delete-book {
+  background-color: black;
+  border: none;
+  font-size: 0.7rem;
+  padding: 0.6rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  min-width: 5.5rem;
+  border-radius: 10px;
+}
+
 /*DEFAULT BUTTON BEHAVIOR*/
 button {
   transition: opacity 0.2s;
