@@ -49,6 +49,7 @@ function displayBooks(books) {
 
     const bookContainer = document.createElement("div");
     bookContainer.classList.add("book-container");
+    bookContainer.dataset.id = book.id;
 
     const bookName = document.createElement("h2");
     const bookAuthor = document.createElement("h3");
@@ -83,8 +84,16 @@ function displayBooks(books) {
     })
 
     deleteButton.textContent = "Delete";
-    deleteButton.addEventListener("click",function(e){
-      
+
+    deleteButton.addEventListener("click", function (e) {
+      const deletedBookId = bookContainer.dataset.id;
+      for (let i = 0; i < myLibrary.length; i++) {
+        if (deletedBookId === myLibrary[i].id) {
+          myLibrary.splice(i, 1);
+          displayBooks(myLibrary);
+          break;
+        }
+      }
     })
     bookContainer.append(bookName, bookAuthor, bookPages, readButton, deleteButton);
     libraryContainer.append(bookContainer);
